@@ -82,47 +82,18 @@ def create_image(mode, camera, links, nodes, filename, background=None, list_of_
                 index += 1
         
 def rescale_object(object):
-    # the number given is relative to the grid
-    # grid of rendered image: width=10, height=6
-    if object == 'Akkuschrauber':
-        bpy.context.object.scale[0] = 0.7
-        bpy.context.object.scale[1] = 0.7
-    elif object == 'Cityroller':
-        bpy.context.object.scale[0] = 2.5
-        bpy.context.object.scale[1] = 2.5
-    elif object == 'Door.013':
-        bpy.context.object.scale[0] = 3.5
-        bpy.context.object.scale[1] = 3.5
-    elif object == 'Elektrischer_Hubwagen':
-        bpy.context.object.scale[0] = 4.76
-        bpy.context.object.scale[1] = 4.76
-    elif object == 'Europalette':
-        bpy.context.object.scale[0] = 2.3
-        bpy.context.object.scale[1] = 2.3
-    elif object == 'Hammer_LP':
-        bpy.context.object.scale[0] = 0.7
-        bpy.context.object.scale[1] = 0.7
-    elif object == 'Karton':
-        bpy.context.object.scale[0] = 2
-        bpy.context.object.scale[1] = 2
-    elif object == 'Laptop_Genauer':
-        bpy.context.object.scale[0] = 1.2
-        bpy.context.object.scale[1] = 1.2
-    elif object == 'Mensch':
-        bpy.context.object.scale[0] = 3.5
-        bpy.context.object.scale[1] = 3.5
-    elif object == 'Rollregal':
-        bpy.context.object.scale[0] = 3.5
-        bpy.context.object.scale[1] = 3.5
-    elif object == 'Rollwagen_Lang':
-        bpy.context.object.scale[0] = 2.5
-        bpy.context.object.scale[1] = 2.5
-    elif object == 'shelf02':
-        bpy.context.object.scale[0] = 3.5
-        bpy.context.object.scale[1] = 3.5
-    elif object == 'Stuhl_Mit_Rollen':
-        bpy.context.object.scale[0] = 2
-        bpy.context.object.scale[1] = 2
+    def rescale_object(object):
+    with open('categories.txt') as f:
+            data = f.read().splitlines()
+        #read each and every line
+        for line in data:
+            elements = line.split()
+            category = elements[0]
+            height = float(elements[1])
+            
+            if category == object
+            py.context.object.scale[0] = height
+            py.context.object.scale[1] = height
     
 
 if __name__=='__main__':
