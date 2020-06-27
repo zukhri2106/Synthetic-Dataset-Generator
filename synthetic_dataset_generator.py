@@ -8,11 +8,11 @@ CAMERA_HEIGHT = 15
 
 # configuration
 NUM_ITERATION = 1
-MAX_CLASSES_PER_IMAGE = 5
-MAX_OBJECTS_PER_CLASSES = 2
+MAX_CLASSES_PER_IMAGE = 4
+MAX_OBJECTS_PER_CLASSES = 3
 
 # Paths
-ROOT_DIR = 'I:/synthetic data generator'
+ROOT_DIR = 'path/to/root/directory'
 MASK_DIR = ROOT_DIR + '/annotations'
 IMAGE_DIR = ROOT_DIR + '/images'
 BG_DIR = ROOT_DIR + '/backgrounds'
@@ -82,17 +82,17 @@ def create_image(mode, camera, links, nodes, filename, background=None, list_of_
                 index += 1
         
 def rescale_object(object):
-    with open('categories.txt') as f:
+    with open(ROOT_DIR+'/categories.txt') as f:
             data = f.read().splitlines()
     #read each and every line
     for line in data:
         elements = line.split()
         category = elements[0]
         height = float(elements[1])
-
-        if category == object:
-            py.context.object.scale[0] = height
-            py.context.object.scale[1] = height
+        
+        if object == category:
+            bpy.context.object.scale[0] = height
+            bpy.context.object.scale[1] = height
     
 
 if __name__=='__main__':
