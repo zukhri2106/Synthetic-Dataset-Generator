@@ -1,0 +1,4 @@
+car 1.6
+cat 0.25
+horse 1.7
+chair 1.3
