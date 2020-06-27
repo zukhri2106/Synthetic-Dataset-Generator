@@ -84,15 +84,15 @@ def create_image(mode, camera, links, nodes, filename, background=None, list_of_
 def rescale_object(object):
     with open('categories.txt') as f:
             data = f.read().splitlines()
-        #read each and every line
-        for line in data:
-            elements = line.split()
-            category = elements[0]
-            height = float(elements[1])
-            
-            if category == object
-            py.context.object.scale[0] = height
-            py.context.object.scale[1] = height
+    #read each and every line
+    for line in data:
+        elements = line.split()
+        category = elements[0]
+        height = float(elements[1])
+
+        if category == object
+        py.context.object.scale[0] = height
+        py.context.object.scale[1] = height
     
 
 if __name__=='__main__':
