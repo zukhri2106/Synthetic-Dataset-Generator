@@ -90,9 +90,9 @@ def rescale_object(object):
         category = elements[0]
         height = float(elements[1])
 
-        if category == object
-        py.context.object.scale[0] = height
-        py.context.object.scale[1] = height
+        if category == object:
+            py.context.object.scale[0] = height
+            py.context.object.scale[1] = height
     
 
 if __name__=='__main__':
