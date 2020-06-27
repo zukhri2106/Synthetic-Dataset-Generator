@@ -82,7 +82,6 @@ def create_image(mode, camera, links, nodes, filename, background=None, list_of_
                 index += 1
         
 def rescale_object(object):
-    def rescale_object(object):
     with open('categories.txt') as f:
             data = f.read().splitlines()
         #read each and every line
