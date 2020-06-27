@@ -2,6 +2,7 @@ import bpy
 import os
 import random
 import datetime
+import math
 
 # constant
 CAMERA_HEIGHT = 15
@@ -9,10 +10,10 @@ CAMERA_HEIGHT = 15
 # configuration
 NUM_ITERATION = 1
 MAX_CLASSES_PER_IMAGE = 4
-MAX_OBJECTS_PER_CLASSES = 3
+MAX_OBJECTS_PER_CLASSES = 2
 
 # Paths
-ROOT_DIR = 'path/to/root/directory'
+ROOT_DIR = 'path/to/Synthetic-Dataset-Generator'
 MASK_DIR = ROOT_DIR + '/annotations'
 IMAGE_DIR = ROOT_DIR + '/images'
 BG_DIR = ROOT_DIR + '/backgrounds'
@@ -81,18 +82,20 @@ def create_image(mode, camera, links, nodes, filename, background=None, list_of_
                 bpy.ops.render.render(write_still=True)
                 index += 1
         
-def rescale_object(object):
-    with open(ROOT_DIR+'/categories.txt') as f:
-            data = f.read().splitlines()
-    #read each and every line
-    for line in data:
-        elements = line.split()
-        category = elements[0]
-        height = float(elements[1])
-        
-        if object == category:
-            bpy.context.object.scale[0] = height
-            bpy.context.object.scale[1] = height
+def augment():
+    # random scale between 1 to 5
+    random_scale = random.randint(5,25)/5
+    bpy.context.object.scale[0] = random_scale
+    bpy.context.object.scale[1] = random_scale
+    
+    # random boolean
+    flip = bool(random.getrandbits(1))   
+    if flip:
+        bpy.context.object.scale[0] = -random_scale
+    
+    # random z-axis rotation
+    bpy.context.object.rotation_euler[2] = random.randint(-45,45)*math.pi/180
+
     
 
 if __name__=='__main__':
@@ -107,8 +110,6 @@ if __name__=='__main__':
             
     # add camera to scene
     bpy.ops.object.camera_add(enter_editmode=False, align='VIEW', location=(0, 0, CAMERA_HEIGHT), rotation=(0, 0, 0))
-    # add sun to the scene
-    #bpy.ops.object.light_add(type='SUN', radius=1, location=(0, 1, 5))
     
     # declare some obj
     scene = bpy.context.scene
@@ -154,7 +155,7 @@ if __name__=='__main__':
                     list_of_objects.append(object)
                     # import image as plane
                     bpy.ops.import_image.to_plane(files=[{"name":selected_item, "name":selected_item}], directory=CLASS_DIR+'/'+object, align_axis='Z+', relative=False)
-                    rescale_object(object)
+                    augment()
                     # relocate image randomly
                     bpy.context.object.location[0] = random.randint(-100,100)/20
                     bpy.context.object.location[1] = random.randint(-20,20)/10
