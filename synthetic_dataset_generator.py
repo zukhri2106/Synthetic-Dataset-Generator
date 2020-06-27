@@ -15,8 +15,8 @@ MAX_OBJECTS_PER_CLASSES = 2
 ROOT_DIR = 'I:/synthetic data generator'
 MASK_DIR = ROOT_DIR + '/annotations'
 IMAGE_DIR = ROOT_DIR + '/images'
-BG_DIR = ROOT_DIR + '/background_images'
-CLASS_DIR = ROOT_DIR + '/classes'
+BG_DIR = ROOT_DIR + '/backgrounds'
+CLASS_DIR = ROOT_DIR + '/categories'
 
 def setup_nodes():
     nodes = []
